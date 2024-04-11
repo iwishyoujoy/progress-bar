@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+:root {
+    --disabled-color: #dfe6f0;
+    --enabled-color: #005dff;
+    --white-color: #FFFFFF;
+    --black-color: #111111;
+
+    --input-height: 30px;
+    --input-width: 50px;
+    --checkbox-border: 2px;
+
+    --main-font: "Roboto Mono", monospace;
+    --font-weight: 500;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: var(--main-font);
+    font-weight: var(--font-weight);
+    font-size: 16px;
+}
+
+.settingsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    row-gap: 15px;
+}
+
+.radiusInput {
+    margin-left: 7px;
+    padding: 2px 5px;
+
+    height: calc(var(--input-height) - 4px - 2px);
+    width: calc(var(--input-width) - 10px - 2px);
+    border-radius: var(--input-height);
+    border: 1px solid var(--black-color);
+
+    text-align: center;
+    font-family: var(--main-font);
+    font-weight: var(--font-weight);
+}
+
+.radiusInput:focus{
+    outline: 1px solid var(--enabled-color);
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 30px;
+}
+
+.checkboxContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.checkbox{
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+  
+.checkboxLabel {
+    cursor: pointer;
+
+    width: var(--input-width);
+    height: var(--input-height);
+    border-radius: var(--input-height);
+    background: var(--disabled-color);
+
+    display: block;
+    position: relative;
+}
+  
+.checkboxLabel:after {
+    content: '';
+
+    position: absolute;
+    top: var(--checkbox-border);
+    left: var(--checkbox-border);
+
+    width: calc(var(--input-height) - var(--checkbox-border)*2);
+    height: calc(var(--input-height) - var(--checkbox-border)*2);
+    border-radius: 50%;
+
+    background: var(--white-color);
+
+    transition: 0.2s;
+}
+
+.checkbox:checked + .checkboxLabel {
+    background: var(--enabled-color);
+}
+
+.checkbox:checked + .checkboxLabel:after {
+    left: calc(100% - var(--checkbox-border));
+    transform: translateX(-100%);
+}
+  
+ 
