@@ -3,8 +3,13 @@ class ProgressBar {
         this.element = document.getElementById(elementId);
         this.config = {
             speed: 5,
+            defaultDisplayValue: "block",
+            defaultInputValue: 0,
             primaryColor: "#005dff",
             secondaryColor: "#dfe6f0",
+            inputElementId: "input",
+            hideElementId: "hide", 
+            animateElementId: "animate",
             ...config
         };
         this.startDeg = 0;
@@ -13,11 +18,11 @@ class ProgressBar {
     }
 
     init() {
-        this.element.style.background = this.getConicGradient(0);
+        this.element.style.background = this.getConicGradient(this.config.defaultInputValue);
 
-        this.radiusInput = document.getElementById("input");
-        this.hideSwitch = document.getElementById("hide");
-        this.animateSwitch = document.getElementById("animate");
+        this.radiusInput = document.getElementById(this.config.inputElementId);
+        this.hideSwitch = document.getElementById(this.config.hideElementId);
+        this.animateSwitch = document.getElementById(this.config.animateElementId);
 
         this.radiusInput.addEventListener("input", this.handleInput.bind(this));
         this.hideSwitch.addEventListener("click", this.handleHideSwitch.bind(this));
@@ -30,7 +35,7 @@ class ProgressBar {
     }
 
     handleHideSwitch() {
-        this.element.style.display = this.hideSwitch.checked ? "none" : "flex";
+        this.element.style.display = this.hideSwitch.checked ? "none" : this.config.defaultDisplayValue;
     }
 
     handleAnimateSwitch() {
@@ -59,6 +64,7 @@ class ProgressBar {
 
 document.addEventListener('DOMContentLoaded', function() {
     const progressBar = new ProgressBar('progressBar', { 
-        speed: 10
+        speed: 10,
+        defaultDisplayValue: "flex"
     });
 });
