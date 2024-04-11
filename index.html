@@ -11,14 +11,12 @@
         <span>Progress</span>
 
         <div class="progressContainer">
-            <div class="outsideCircle">
-                <div class="insideCircle"></div>
-            </div>
+            <div id="progressBar" class="outsideCircle"></div>
         </div>
 
         <div class="settingsContainer">
             <div class="inputContainer">
-                <input id="input" class="radiusInput" type="number" min="0" max="100" placeholder="0">
+                <input id="input" class="radiusInput" type="number" min="0" max="100" value="0" placeholder="0">
                 <span class="inputLabel">Value</span>
             </div>
 
@@ -29,7 +27,7 @@
                 </div>
                 <label for="animate" class="inputLabel" id="animateLabel">Animate</label>
             </div>
-            
+
             <div class="inputContainer">
                 <div class="checkboxContainer">
                     <input id="hide" class="checkbox" type="checkbox"/>

@@ -9,19 +9,23 @@
     --input-width: 50px;
     --checkbox-border: 2px;
 
+    --progress-bar-diameter: 130px;
+    --progress-bar-thickness: 20px;
+
     --main-font: "Noto Sans", sans-serif;
     --font-weight: 600;
+    --font-size: 16px;
 }
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px 15px;
+    margin: 16px 24px;
 
     font-family: var(--main-font);
     font-weight: var(--font-weight);
-    font-size: 16px;
+    font-size: var(--font-size);
 }
 
 .container {
@@ -34,18 +38,21 @@ body {
     row-gap: 60px;
 }
 
-
 .progressContainer{
     align-self: center;
-    display: flex;
+
+    height: var(--progress-bar-diameter);
+    width: var(--progress-bar-diameter);
 }
 
 .outsideCircle{
     position: relative;
-    height: 140px;
-    width: 140px;
+
+    height: var(--progress-bar-diameter);
+    width: var(--progress-bar-diameter);
     border-radius: 50%;
     background-color: var(--disabled-color);
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,10 +61,11 @@ body {
 .outsideCircle::before{
     content: "";
     position: absolute;
-    height: 120px;
-    width: 120px;
+
+    height: calc(var(--progress-bar-diameter) - var(--progress-bar-thickness));
+    width: calc(var(--progress-bar-diameter) - var(--progress-bar-thickness));
     border-radius: 50%;
-    background-color: #fff;
+    background-color: var(--white-color);
 }
 
 .settingsContainer {
@@ -83,6 +91,7 @@ body {
     text-align: center;
     font-family: var(--main-font);
     font-weight: var(--font-weight);
+    font-size: var(--font-size);
 }
 
 .radiusInput:focus{
