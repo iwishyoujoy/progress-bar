@@ -1,39 +1,64 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const progressBar = document.getElementById("progressBar");
-    const radiusInput = document.getElementById("input");
-    const hideSwitch = document.getElementById("hide");
-    const animateSwitch = document.getElementById("animate");
+class ProgressBar {
+    constructor(elementId, config = {}) {
+        this.element = document.getElementById(elementId);
+        this.config = {
+            speed: 5,
+            primaryColor: "#005dff",
+            secondaryColor: "#dfe6f0",
+            ...config
+        };
+        this.startDeg = 0;
+        this.animationInterval = null;
+        this.init();
+    }
 
-    const speed = 5;
-    let startDeg = 0;
-    let animationInterval;
-    
-    radiusInput.addEventListener("input", () => {
-        progressBar.style.background = `conic-gradient(#005dff ${radiusInput.value * 3.6}deg, #dfe6f0 0deg)`;
-    })
+    init() {
+        this.element.style.background = this.getConicGradient(0);
 
-    hideSwitch.addEventListener("click", function() {
-        progressBar.style.display = this.checked ? "none" : "flex";
-    })
+        this.radiusInput = document.getElementById("input");
+        this.hideSwitch = document.getElementById("hide");
+        this.animateSwitch = document.getElementById("animate");
 
-    animateSwitch.addEventListener("click", function() {
-        if (this.checked){
-            if (animationInterval) clearInterval(animationInterval);
+        this.radiusInput.addEventListener("input", this.handleInput.bind(this));
+        this.hideSwitch.addEventListener("click", this.handleHideSwitch.bind(this));
+        this.animateSwitch.addEventListener("click", this.handleAnimateSwitch.bind(this));
+    }
 
-            animationInterval = setInterval(() => {
-                startDeg++;
-                progressBar.style.background = `conic-gradient(#005dff ${startDeg}deg, #dfe6f0 0deg)`;
+    handleInput(event) {
+        const value = event.target.value;
+        this.element.style.background = this.getConicGradient(value * 3.6);
+    }
 
-                if (startDeg === 360) {
-                    startDeg = 0;
+    handleHideSwitch() {
+        this.element.style.display = this.hideSwitch.checked ? "none" : "flex";
+    }
+
+    handleAnimateSwitch() {
+        if (this.animateSwitch.checked) {
+            if (this.animationInterval) clearInterval(this.animationInterval);
+
+            this.animationInterval = setInterval(() => {
+                this.startDeg++;
+                this.element.style.background = this.getConicGradient(this.startDeg);
+
+                if (this.startDeg === 360) {
+                    this.startDeg = 0;
                 }
-            }, speed);
-        }
-        else {
-            if (animationInterval) clearInterval(animationInterval);
+            }, this.config.speed);
+        } else {
+            if (this.animationInterval) clearInterval(this.animationInterval);
 
-            progressBar.style.background = `conic-gradient(#005dff ${radiusInput.value * 3.6}deg, #dfe6f0 0deg)`;
+            this.element.style.background = this.getConicGradient(this.radiusInput.value * 3.6);
         }
-    })
+    }
 
+    getConicGradient(value) {
+        return `conic-gradient(${this.config.primaryColor} ${value}deg, ${this.config.secondaryColor} 0deg)`
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const progressBar = new ProgressBar('progressBar', { 
+        speed: 10
+    });
 });
