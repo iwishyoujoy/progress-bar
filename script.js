@@ -39,6 +39,8 @@ class ProgressBar {
     }
 
     handleAnimateSwitch() {
+        this.startDeg = 0;
+        
         if (this.animateSwitch.checked) {
             if (this.animationInterval) clearInterval(this.animationInterval);
 
