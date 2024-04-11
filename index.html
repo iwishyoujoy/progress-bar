@@ -5,34 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Progress</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" async></script>
 </head>
 <body>
-    <div class="progressContainer">
-        <div id="progressBar"></div>
-    </div>
-    <div class="settingsContainer">
+    <div class="container">
+        <span>Progress</span>
 
-        <div class="inputContainer">
-            <input id="input" class="radiusInput" type="number" min="0" max="100" placeholder="0">
-            <span class="inputLabel">Value</span>
+        <div class="progressContainer">
+            <div class="outsideCircle">
+                <div class="insideCircle"></div>
+            </div>
         </div>
 
-        <div class="inputContainer">
-            <div class="checkboxContainer">
-                <input id="animate" class="checkbox" type="checkbox"/>
-                <label for="animate" class="checkboxLabel"></label>
+        <div class="settingsContainer">
+            <div class="inputContainer">
+                <input id="input" class="radiusInput" type="number" min="0" max="100" placeholder="0">
+                <span class="inputLabel">Value</span>
             </div>
-            <label for="animate" class="inputLabel" id="animateLabel">Animate</label>
-        </div>
-        
-        <div class="inputContainer">
-            <div class="checkboxContainer">
-                <input id="hide" class="checkbox" type="checkbox"/>
-                <label for="hide" class="checkboxLabel"></label>
+
+            <div class="inputContainer">
+                <div class="checkboxContainer">
+                    <input id="animate" class="checkbox" type="checkbox"/>
+                    <label for="animate" class="checkboxLabel"></label>
+                </div>
+                <label for="animate" class="inputLabel" id="animateLabel">Animate</label>
             </div>
-            <label for="hide" class="inputLabel" id="hideLabel">Hide</label>
+            
+            <div class="inputContainer">
+                <div class="checkboxContainer">
+                    <input id="hide" class="checkbox" type="checkbox"/>
+                    <label for="hide" class="checkboxLabel"></label>
+                </div>
+                <label for="hide" class="inputLabel" id="hideLabel">Hide</label>
+            </div>
         </div>
     </div>
+
+    <script src="script.js" ></script>
 </body>
 </html>

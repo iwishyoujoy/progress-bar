@@ -10,20 +10,60 @@
     --checkbox-border: 2px;
 
     --main-font: "Noto Sans", sans-serif;
-    --font-weight: 500;
+    --font-weight: 600;
 }
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 10px 15px;
 
     font-family: var(--main-font);
     font-weight: var(--font-weight);
     font-size: 16px;
 }
 
+.container {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    row-gap: 60px;
+}
+
+
+.progressContainer{
+    align-self: center;
+    display: flex;
+}
+
+.outsideCircle{
+    position: relative;
+    height: 140px;
+    width: 140px;
+    border-radius: 50%;
+    background-color: var(--disabled-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.outsideCircle::before{
+    content: "";
+    position: absolute;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
 .settingsContainer {
+    margin-top: 20px;
+    align-self: center;
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -104,5 +144,8 @@ body {
     left: calc(100% - var(--checkbox-border));
     transform: translateX(-100%);
 }
+
+
+
   
  
